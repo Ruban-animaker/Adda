@@ -34,6 +34,23 @@ body, html { font-size: 100%; 	padding: 0; margin: 0;}
 	clear: both;
 }
 
+.collapse{
+	background: #594778;
+	width: 25px;
+	height: 35px;
+	margin-left: 40px;
+	padding: 5px;
+}
+.open{
+	background: #594778;
+	width: 25px;
+	height: 35px;
+	margin-left: -150px;
+	padding: 5px;
+}
+
+#showleft
+
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #47a3da;
