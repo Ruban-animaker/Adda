@@ -83,11 +83,14 @@ a:hover {
 	position: absolute;
 	right: 200px;
 	outline: none;
-	background-color: #594778;
 }
 
-.intime:checked~.switch-paddle{
-	background-color: #594778;
+.intime > input:checked~.switch-paddle {
+    background: #594778	;
+}
+
+.intime > input:disabled~.switch-paddle {
+    background: #707070;
 }
 
 

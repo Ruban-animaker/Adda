@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="Css/component.css" />
     <link rel="stylesheet" type="text/css" href="Css/default.css" />
     <script src="JS/modernizr-custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 
 
   </head>
@@ -38,15 +39,15 @@
 			<div class="main">
         <hr style="margin-left: 50px">
           <div class="switch large intime">
-            <input class="switch-input" id="yes-no" type="checkbox" name="exampleSwitch">
-            <label class="switch-paddle" for="yes-no">
-              <span class="show-for-sr">Do you like me?</span>
+            <input class="switch-input" id="in-out" type="checkbox" name="exampleSwitch">
+            <label class="switch-paddle" for="in-out">
               <span class="switch-active" aria-hidden="true">Out</span>
               <span class="switch-inactive" aria-hidden="true">In</span>
             </label>
           </div>
 
 				<section>
+          <button type="button" id="test">LOL</button>
 				</section>
 			</div>
 		</div>
@@ -64,6 +65,22 @@
 				classie.toggle( menuLeft, 'cbp-spmenu-open' );
         classie.toggle( collapse, 'open' );
 			};
+
+      var fewSeconds = 5;
+      $('#in-out').change(function(){
+
+          $('#in-out').prop('disabled', true);
+          setTimeout(function(){
+              $('#in-out').prop('disabled', false);
+          }, fewSeconds*1000);
+
+
+      });
+
+      $("#test").click(function(){
+        
+      })
+
 		</script>
 
   </body>
