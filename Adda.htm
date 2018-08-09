@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adda</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/css/foundation.min.css" integrity="sha256-iJQ8dZac/jUYHxiEnZJsyVpKcdq2sQvdA7t02QFmp30= sha384-SplqNBo/0ZlvSdwrP/riIPDozO5ck8+yIm++KVqyMAC53S6m3BaV+2OLpi7ULOOh sha512-ho6hK4sAWdCeqopNZWNy1d9Ok2hzfTLQLcGSr8ZlRzDzh6tNHkVoqSl6wgLsqls3yazwiG9H9dBCtSfPuiLRCQ==" crossorigin="anonymous">
     <!-- Compressed JavaScript -->
@@ -14,7 +15,9 @@
     <link rel="stylesheet" type="text/css" href="Css/component.css" />
     <link rel="stylesheet" type="text/css" href="Css/default.css" />
     <script src="JS/modernizr-custom.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+
+    <link href="Css/notify.css" rel="stylesheet">
+    <script src="JS/notify.js"></script>
 
 
   </head>
@@ -30,13 +33,22 @@
 			<a href="#" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
+    <div class="row">
+  <div class="columns small-4">4 columns</div>
+
 		<div class="container">
-			<header class="clearfix">
+		<!--	<header class="clearfix">
         <div class="collapse" id="collapse">
           <button id="showLeft" style="color:white;font-size:18px;outline:none"><i class="fas fa-bars"></i></button>
-        </div>
+        </div> -->
+      </div>
 			</header>
+      <div class="columns">
+
 			<div class="main">
+        <div class="updates">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
         <hr style="margin-left: 50px">
           <div class="switch large intime">
             <input class="switch-input" id="in-out" type="checkbox" name="exampleSwitch">
@@ -47,10 +59,10 @@
           </div>
 
 				<section>
-          <button type="button" id="test">LOL</button>
 				</section>
 			</div>
 		</div>
+  </div>
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
 		<script src="JS/classie.js"></script>
 		<script>
@@ -59,26 +71,48 @@
         collapse = document.getElementById( 'collapse' ),
 				body = document.body;
 
+      var io=1;
 
-			showLeft.onclick = function() {
+
+		/*	showLeft.onclick = function() {
 				classie.toggle( this, 'active' );
 				classie.toggle( menuLeft, 'cbp-spmenu-open' );
         classie.toggle( collapse, 'open' );
-			};
+			};*/
 
-      var fewSeconds = 5;
+      var fewSeconds = 3;
       $('#in-out').change(function(){
 
           $('#in-out').prop('disabled', true);
           setTimeout(function(){
               $('#in-out').prop('disabled', false);
           }, fewSeconds*1000);
-
-
       });
 
-      $("#test").click(function(){
-        
+      $("#in-out").click(function(){
+        if(io==1){
+        var options = {
+          style: 'info',
+          title: 'Success!',
+          message: 'In time registered',
+          timeout: 3000,
+          close_button: true
+        };
+        var n = new notify(options);
+        n.show();
+        io=0;
+      }
+      else {
+        var options = {
+          style: 'info',
+          title: 'Success!',
+          message: 'Out time registered',
+          timeout: 3000,
+          close_button: true
+        };
+        var b = new notify(options);
+        b.show();
+      }
       })
 
 		</script>
