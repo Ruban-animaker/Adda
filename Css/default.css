@@ -83,6 +83,8 @@ a:hover {
 	position: absolute;
 	right: 200px;
 	outline: none;
+	top: 200px;
+	padding-top: 45px
 }
 
 .intime > input:checked~.switch-paddle {
@@ -172,6 +174,10 @@ a:hover {
 	cursor: pointer;
 	margin: 10px 0;
 	font-size: 0.8em;
+}
+
+.main > h3 {
+
 }
 
 .main > section button:hover {

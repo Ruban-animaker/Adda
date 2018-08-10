@@ -18,6 +18,7 @@
 
     <link href="Css/notify.css" rel="stylesheet">
     <script src="JS/notify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 
   </head>
@@ -34,22 +35,37 @@
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
     <div class="row">
-  <div class="columns small-4">4 columns</div>
+  <div class="columns medium-4">4 columns</div>
 
-		<div class="container">
-		<!--	<header class="clearfix">
+		<!--<div class="container">
+			<header class="clearfix">
         <div class="collapse" id="collapse">
           <button id="showLeft" style="color:white;font-size:18px;outline:none"><i class="fas fa-bars"></i></button>
-        </div> -->
+        </div>
       </div>
-			</header>
+			</header> -->
       <div class="columns">
+        <div class="top-bar" style="margin-left:240px;margin-top: -25px;background-color: #9881bb">
+          <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
-			<div class="main">
+              <li style="all:unset" class="menu-text">ADDA</li>
+
+          </div>
+          <div class="top-bar-right">
+              <ul class="menu" style="background-color: #9881bb">
+                <li class="menu-text" style="font-weight: normal;"> Hi, {username}</li>
+                <li><button  style="background-color: #594778	" type="button" class="button">Logout</button></li>
+                </ul>
+
+          </div>
+        </div>
+
+			<div class="main" style="padding-top: 15px ">
         <div class="updates">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
         <hr style="margin-left: 50px">
+        <h3 style="margin-left: 50px;"> <i class="fas fa-home fa"> Home </i></h3>
           <div class="switch large intime">
             <input class="switch-input" id="in-out" type="checkbox" name="exampleSwitch">
             <label class="switch-paddle" for="in-out">
@@ -62,7 +78,10 @@
 				</section>
 			</div>
 		</div>
-  </div>
+
+    <div class="column medium-4 align-right">the rasdasdasdasdasdasasdjhasjldhalsjdhajlkdhajdhasljhdajdahsjkdhjasgdhjkagdhjsagdjashgdjhasgdjasgdjhagdjahsgdjagsddight</div>
+
+    </div>
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
 		<script src="JS/classie.js"></script>
 		<script>
@@ -92,9 +111,9 @@
       $("#in-out").click(function(){
         if(io==1){
         var options = {
-          style: 'info',
+          style: 'success',
           title: 'Success!',
-          message: 'In time registered',
+          message: 'In time registered -' + ' ' + moment(new Date()).format("HH:mm"),
           timeout: 3000,
           close_button: true
         };
@@ -104,12 +123,13 @@
       }
       else {
         var options = {
-          style: 'info',
+          style: 'success',
           title: 'Success!',
-          message: 'Out time registered',
+          message: 'Out time registered -' + ' ' + moment(new Date()).format("HH:mm"),
           timeout: 3000,
           close_button: true
         };
+        io=1;
         var b = new notify(options);
         b.show();
       }
