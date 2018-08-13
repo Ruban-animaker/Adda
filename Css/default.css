@@ -232,3 +232,18 @@ a:hover {
 	margin-top: -5px;
 
 }
+
+.growth_report{
+	margin-left: 50px;
+	padding-top: 5px;
+	font-size: 15px
+}
+
+.history{
+	margin-left: 50px;
+	padding-top: 5px;
+}
+
+.historyReport > thead{
+	background-color:#9881bb;
+}

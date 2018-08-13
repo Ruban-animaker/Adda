@@ -12,23 +12,20 @@
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/js/foundation.min.js" integrity="sha256-G6jsRyH1fxbsvFIXSCuwYmI1aIDYBa28xscrvmYjJy0= sha384-vtoG68NvPc9azmFJr447vvY8qgdyA4FdaJ5/bqvzIM4eAdZfO0iyRRF8l2AAscYI sha512-43seCcNrHA0BQgrtyajB9sp8yOdv5c8QdYvgjP7zJ7v+dmzAcxYDQ2gupb9aztsNWBq1COIp/3NHYkQs4l/dkg==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- menu styles -->
-    <link rel="stylesheet" type="text/css" href="Css/component.css" />
-    <link rel="stylesheet" type="text/css" href="Css/default.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/component.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/default.css" />
 
-
-    <link href="Css/notify.css" rel="stylesheet">
-    <script src="JS/notify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 
   </head>
   <body>
     <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-			<div><center><img class="profile_pic" src="Public/default_pic.png" width="80%" style="margin-top::50px">
+			<div><center><img class="profile_pic" src="../Public/default_pic.png" width="80%">
       <a href="#" style="all:unset;cursor:pointer"><p style="margin-top:5px;color:white;"> Edit Profile</p></a>
       </center></div>
-	    <a href="Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
-			<a href="Growth report/Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
+	    <a href="../Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
+			<a href="Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
 			<a href="#" title="Attendance">Attendance <i style="margin-left: 95px" class="far fa-calendar-alt"></i></a>
 			<a href="#" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
 			<a href="#" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
@@ -45,7 +42,7 @@
       </div>
 			</header> -->
       <div class="columns">
-        <div class="top-bar" style="margin-left:240px;margin-top: -25px;background-color: #9881bb">
+        <div class="top-bar" style="margin-left:240px;margin-top: -24px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
               <li style="all:unset" class="menu-text">ADDA</li>
@@ -65,75 +62,30 @@
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
         <hr style="margin-left: 50px">
-        <h4 style="margin-left: 50px;"> <i class="fas fa-home fa"></i> Home </h4>
-          <div class="switch large intime">
-            <input class="switch-input" id="in-out" type="checkbox" name="exampleSwitch">
-            <label class="switch-paddle" for="in-out">
-              <span class="switch-active" aria-hidden="true">Out</span>
-              <span class="switch-inactive" aria-hidden="true">In</span>
-            </label>
-          </div>
+        <h4 style="margin-left: 50px;"> <i class="fas fa-chart-line"></i> Growth Report </i></h4>
+        <ul class="tabs" data-tabs id="example-tabs" style="margin-left: 50px">
+          <li class="tabs-title is-active"><a href="Growth_Report.htm" aria-selected="true">Today`s report</a></li>
+          <li class="tabs-title"><a href="History.htm" aria-selected="false">History</a></li>
+        </ul>
+        <div class="growth_report">
+          <label>
+            What were you busy with today?
+            <textarea placeholder='List out as points' rows="10"></textarea>
+          </label>
+          <label for="saveGrowth" class="button saveGrowth">Save</label>
+          <input type="button" id="saveGrowth" class="show-for-sr">
 
 				<section>
 				</section>
 			</div>
 		</div>
 
-    <div class="columns" style="margin-left: 1250px;background-color: #9881bb; height:100vh;margin-top: -281px; width: 200px;border-top:5px; border-top-color:#594778;border-top-style: solid"></div>
+    <div class="columns" style="margin-left: 1250px;background-color: #9881bb; height:100vh;margin-top: -696px; width: 200px;border-top:5px; border-top-color:#594778;border-top-style: solid"></div>
 
     </div>
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-
 		<script>
-			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeft = document.getElementById( 'showLeft' ),
-        collapse = document.getElementById( 'collapse' ),
-				body = document.body;
 
-      var io=1;
-
-
-		/*	showLeft.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-        classie.toggle( collapse, 'open' );
-			};*/
-
-      var fewSeconds = 3;
-      $('#in-out').change(function(){
-
-          $('#in-out').prop('disabled', true);
-          setTimeout(function(){
-              $('#in-out').prop('disabled', false);
-          }, fewSeconds*1000);
-      });
-
-      $("#in-out").click(function(){
-        if(io==1){
-        var options = {
-          style: 'success',
-          title: 'Success!',
-          message: 'In time registered -' + ' ' + moment(new Date()).format("HH:mm"),
-          timeout: 3000,
-          close_button: true
-        };
-        var n = new notify(options);
-        n.show();
-        io=0;
-      }
-      else {
-        var options = {
-          style: 'success',
-          title: 'Success!',
-          message: 'Out time registered -' + ' ' + moment(new Date()).format("HH:mm"),
-          timeout: 3000,
-          close_button: true
-        };
-        io=1;
-        var b = new notify(options);
-        b.show();
-      }
-      })
 
 		</script>
 
