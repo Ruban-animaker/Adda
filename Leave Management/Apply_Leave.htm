@@ -5,17 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adda</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/css/foundation.min.css" integrity="sha256-iJQ8dZac/jUYHxiEnZJsyVpKcdq2sQvdA7t02QFmp30= sha384-SplqNBo/0ZlvSdwrP/riIPDozO5ck8+yIm++KVqyMAC53S6m3BaV+2OLpi7ULOOh sha512-ho6hK4sAWdCeqopNZWNy1d9Ok2hzfTLQLcGSr8ZlRzDzh6tNHkVoqSl6wgLsqls3yazwiG9H9dBCtSfPuiLRCQ==" crossorigin="anonymous">
     <!-- Compressed JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/js/foundation.min.js" integrity="sha256-G6jsRyH1fxbsvFIXSCuwYmI1aIDYBa28xscrvmYjJy0= sha384-vtoG68NvPc9azmFJr447vvY8qgdyA4FdaJ5/bqvzIM4eAdZfO0iyRRF8l2AAscYI sha512-43seCcNrHA0BQgrtyajB9sp8yOdv5c8QdYvgjP7zJ7v+dmzAcxYDQ2gupb9aztsNWBq1COIp/3NHYkQs4l/dkg==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- menu styles -->
     <link rel="stylesheet" type="text/css" href="../Css/component.css" />
     <link rel="stylesheet" type="text/css" href="../Css/default.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <link rel="stylesheet" href="../Css/t-datepicker.min.css">
+    <link rel="stylesheet" href="../Css/t-datepicker-purple.css">
 
 
   </head>
@@ -25,9 +24,9 @@
       <a href="#" style="all:unset;cursor:pointer"><p style="margin-top:5px;color:white;"> Edit Profile</p></a>
       </center></div>
 	    <a href="../Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
-			<a href="Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
+			<a href="../Growth report/Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
 			<a href="#" title="Attendance">Attendance <i style="margin-left: 95px" class="far fa-calendar-alt"></i></a>
-			<a href="../Leave Management/Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
+			<a href="Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
 			<a href="#" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
@@ -62,30 +61,69 @@
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
         <hr style="margin-left: 50px">
-        <h4 style="margin-left: 50px;"> <i class="fas fa-chart-line"></i> Growth Report </h4>
+        <h4 style="margin-left: 50px;"> <i class="far fa-calendar-times"></i> Leave Management</h4>
         <ul class="tabs" data-tabs id="example-tabs" style="margin-left: 50px">
-          <li class="tabs-title is-active"><a href="Growth_Report.htm" aria-selected="true" style="color:#594778;font-size:15px">Today`s report</a></li>
-          <li class="tabs-title"><a href="History.htm" aria-selected="false" style="color:#594778;font-size:15px">History</a></li>
+          <li class="tabs-title is-active"><a href="Apply_Leave.htm" aria-selected="true" style="color:#594778;font-size:15px">Apply Leave</a></li>
+          <li class="tabs-title"><a href="Leave_status.htm" aria-selected="false" style="color:#594778;font-size:15px">Leave Status</a></li>
         </ul>
-        <div class="growth_report">
-          <label>
-            What were you busy with today?
-            <textarea placeholder='List out as points' rows="10"></textarea>
-          </label>
-          <label for="saveGrowth" class="button saveGrowth">Save</label>
-          <input type="button" id="saveGrowth" class="show-for-sr" >
+				<section style="padding-top: 10px;margin-left: 50px">
+          <table class="leavePendingTable">
+            <tr>
+              <td>Leave Pending - </td>
+              <td id="leavePending"><td>
+              </tr>
+          </table>
+          <!-- Set up your HTML -->
 
-				<section>
+
+          <div class="t-datepicker">
+            <div class="t-check-in">
+              <div class="t-dates t-date-check-in">
+                ➜<label class="t-date-info-title">Check In</label>
+              </div>
+              <input type="hidden" class="t-input-check-in" value="null" name="start">
+              <div class="t-datepicker-day">
+                <table class="t-table-condensed">
+                  <!-- Date theme calendar -->
+                </table>
+              </div>
+            </div>
+            <div class="t-check-out">
+              <div class="t-dates t-date-check-out">
+                ➜<label class="t-date-info-title">Check Out</label>
+              </div>
+              <input type="hidden" class="t-input-check-out" value="null" name="end">
+            </div>
+          </div>
 				</section>
-			</div>
 		</div>
 
 
     </div>
-		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-		<script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../JS/t-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/js/foundation.min.js" integrity="sha256-G6jsRyH1fxbsvFIXSCuwYmI1aIDYBa28xscrvmYjJy0= sha384-vtoG68NvPc9azmFJr447vvY8qgdyA4FdaJ5/bqvzIM4eAdZfO0iyRRF8l2AAscYI sha512-43seCcNrHA0BQgrtyajB9sp8yOdv5c8QdYvgjP7zJ7v+dmzAcxYDQ2gupb9aztsNWBq1COIp/3NHYkQs4l/dkg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script>
+    var leavePending = 12;
+    $('#leavePending').html(leavePending);
 
+    $(document).ready(function(){
+    $('.t-datepicker').tDatePicker({
+      autoClose: true,
+      limitNextMonth: 3,
+      numCalendar : 2,
+      formatDate: 'dd-mm-yyyy',
+      limitDateRanges : 3,
+      titleCheckIn: 'From',
+      titleCheckOut: 'To',
+      titleToday: 'Today',
+      titleDateRanges: 'Days',
+      titleDateRange: 'Day',
+
+    });
+  });
 		</script>
 
   </body>

@@ -30,7 +30,7 @@
 	    <a href="Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
 			<a href="Growth report/Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
 			<a href="#" title="Attendance">Attendance <i style="margin-left: 95px" class="far fa-calendar-alt"></i></a>
-			<a href="#" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
+			<a href="Leave Management/Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
 			<a href="#" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
@@ -44,7 +44,7 @@
         </div>
       </div>
 			</header> -->
-      <div class="columns">
+      <div class="columns medium-4">
         <div class="top-bar" style="margin-left:240px;margin-top: -25px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
@@ -54,7 +54,7 @@
           <div class="top-bar-right">
               <ul class="menu" style="background-color: #9881bb">
                 <li class="menu-text" style="font-weight: normal;"> Hi, {username}</li>
-                <li><button  style="background-color: #594778	" type="button" class="button">Logout</button></li>
+                <li><button  type="button" class="button logout">Logout</button></li>
                 </ul>
 
           </div>
@@ -64,7 +64,8 @@
         <div class="updates">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
-        <hr style="margin-left: 50px">
+        <hr style="margin-left: 50px; color:#f39323">
+
         <h4 style="margin-left: 50px;"> <i class="fas fa-home fa"></i> Home </h4>
           <div class="switch large intime">
             <input class="switch-input" id="in-out" type="checkbox" name="exampleSwitch">
@@ -75,11 +76,27 @@
           </div>
 
 				<section>
+          <br>
+          <table class="in-out_table unstriped" style="margin-left: -20px">
+            <tr class="inTime">
+              <td>
+          Time in:
+        </td>
+        <td id="inTime">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Time out:
+        </td>
+        <td id="outTime">
+        </td>
+      </tr>
+    </table>
 				</section>
 			</div>
 		</div>
 
-    <div class="columns" style="margin-left: 1250px;background-color: #9881bb; height:100vh;margin-top: -281px; width: 200px;border-top:5px; border-top-color:#594778;border-top-style: solid"></div>
 
     </div>
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
@@ -90,7 +107,8 @@
         collapse = document.getElementById( 'collapse' ),
 				body = document.body;
 
-      var io=1;
+
+      var io=1,inTime,outTime,workTime;
 
 
 		/*	showLeft.onclick = function() {
@@ -110,28 +128,48 @@
 
       $("#in-out").click(function(){
         if(io==1){
+          inTime = moment(new Date()).format("HH:mm");
+          $("#inTime").html(inTime);
         var options = {
           style: 'success',
           title: 'Success!',
-          message: 'In time registered -' + ' ' + moment(new Date()).format("HH:mm"),
+          message: 'In time registered -' + ' ' + inTime,
           timeout: 3000,
           close_button: true
         };
         var n = new notify(options);
         n.show();
         io=0;
+
       }
       else {
+        outTime=moment(new Date()).format("HH:mm");
+        $("#outTime").html(outTime);
         var options = {
           style: 'success',
           title: 'Success!',
-          message: 'Out time registered -' + ' ' + moment(new Date()).format("HH:mm"),
+          message: 'Out time registered -' + ' ' + outTime,
           timeout: 3000,
           close_button: true
         };
+        workTime=moment.utc(moment(outTime,"HH:mm").diff(moment(inTime,"HH:mm"))).format("HH:mm")
+        var options_work = {
+          style: 'info',
+          title: 'Done for the day!',
+          message: 'Total worked hours -' + ' ' + workTime,
+          timeout: 5000,
+          close_button: true
+        };
         io=1;
+        setTimeout(function(){
+          var c = new notify(options_work);
+          c.show();
+        }, 500);
+
         var b = new notify(options);
         b.show();
+
+
       }
       })
 

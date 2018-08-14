@@ -247,3 +247,62 @@ a:hover {
 .historyReport > thead{
 	background-color:#9881bb;
 }
+
+.reveal:focus{
+	outline:0;
+}
+
+.reveal > button:focus{
+	outline:0;
+}
+
+.saveGrowth{
+	background-color: #594778
+}
+
+.saveGrowth:hover{
+	background-color: #9881bb
+}
+
+.logout{
+	background-color: #594778
+}
+
+.logout:hover{
+	background-color: #9881bb;
+ 	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+
+.logout:focus{
+	outline:0;
+	background-color: #594778
+}
+
+.in-out_table{
+ border-left-width: 5px;
+ border-left-color: #594778;
+ border-left-style: solid;
+
+}
+.in-out_table .inTime{
+ border-bottom-width: .1em;
+ border-bottom-color: #594778;
+ border-bottom-style: solid;
+}
+
+.leavePendingTable{
+ border-left-width: 5px;
+ border-left-color: #594778;
+ border-left-style: solid;
+ border-top-width: 2px;
+ border-top-color: #594778;
+ border-top-style: solid;
+ border-bottom-width: 2px;
+ border-bottom-color: #594778;
+ border-bottom-style: solid;
+ border-right-width: 2px;
+ border-right-color: #594778;
+ border-right-style: solid;
+}
