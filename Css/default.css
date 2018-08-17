@@ -306,3 +306,19 @@ a:hover {
  border-right-color: #594778;
  border-right-style: solid;
 }
+
+.applyLeave{
+	background-color:#594778
+}
+
+.applyLeave:hover{
+	  background-color: #9881bb;
+	 	border-width:1px;
+		border-style: solid;
+		border-color: #594778;
+}
+
+.applyLeave:focus{
+	background-color:#594778;
+	outline:none
+}

@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../Css/component.css" />
     <link rel="stylesheet" type="text/css" href="../Css/default.css" />
     <link rel="stylesheet" href="../Css/daterangepicker.css">
+    <link rel="stylesheet" href="../Css/notify.css" >
 
 
 
@@ -65,19 +66,44 @@
           <li class="tabs-title is-active"><a href="Apply_Leave.htm" aria-selected="true" style="color:#594778;font-size:15px">Apply Leave</a></li>
           <li class="tabs-title"><a href="Leave_status.htm" aria-selected="false" style="color:#594778;font-size:15px">Leave Status</a></li>
         </ul>
-				<section style="padding-top: 10px;margin-left: 50px">
-          <table class="leavePendingTable">
+				<div style="padding-top: 10px;margin-left: 50px">
+          <table class="leavePendingTable" style="width:200px ">
             <tr>
-              <td>Leave Pending - </td>
+              <td>Leave Pending:</td>
               <td id="leavePending"><td>
               </tr>
           </table>
           <!-- Set up your HTML -->
-          From: <input id="applyLeaveFrom" type="text" value="">
-          To:<input id="applyLeaveTo" type="text" value="">
+          <form>
+            <div class="grid-x">
+              <div class="cell small-3">
+                <div class="input-group" id="applyLeaveFromDiv" style="width:200px">
+                  <input id="applyLeaveFrom" class="input-group-field" type="text" value="" placeholder="From" required>
+                  <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
 
+                  </div>
 
-				</section>
+              </div>
+              <div class="cell small-3">
+                <div class="input-group" id="applyLeaveToDiv" style="width:200px">
+                  <input id="applyLeaveTo" class="input-group-field" type="text" value="" placeholder="To" required>
+                  <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          <textarea placeholder='Reason/Comments' id="leaveReason" rows="5" style="width:450px;margin-left: 50px" required></textarea>
+          <button class="button applyLeave" id="applyLeave" style="margin-left: 50px" type=submit>Apply</button>
+          </form>
+
+          <span>
+            <p style="margin-left: 50px;font-size: 11px;font-style:italic; "><b>Note:</b> Maximum of only 3 leaves allowed per quarter</p>
+          </span>
+
+				</div>
 		</div>
 
 
@@ -88,11 +114,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment-with-locales.min.js"></script>
     <script src="../JS/jquery.daterangepicker.min.js"></script>
+    <script src="../JS/notify.js"></script>
 
     <script>
     var leavePending = 12;
+    var leaveFrom=null, leaveTo=null, noOfDays, leaveReason;
     $('#leavePending').html(leavePending);
-    $('#applyLeaveFrom').dateRangePicker({
+    $('#applyLeaveFromDiv').dateRangePicker({
       	getValue: function()
       	{
       		if ($('#applyLeaveFrom').val() && $('#applyLeaveTo').val() ){
@@ -104,8 +132,14 @@
       	},
       	setValue: function(s,s1,s2)
       	{
-      		$('#applyLeaveFrom').val(s1);
-      		$('#applyLeaveTo').val(s2);
+          $('#applyLeaveFrom').val(s1);
+          $('#applyLeaveTo').val(s2);
+          leaveFrom = moment(s1, "DD-MM-YYYY");
+          leaveTo = moment(s2, "DD-MM-YYYY");
+          noOfDays = moment.duration(leaveTo.diff(leaveFrom)).asDays() + 1;
+          leaveFrom=s1;
+          leaveTo=s2;
+
       	},
         selectForward: true,
         customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
@@ -123,17 +157,52 @@
         		var _tooltip = valid ? '' : 'weekends are disabled';
         		return [valid,_class,_tooltip];
         	}
-    });
+    })
+    .bind('datepicker-close',function()
+      {
+      	/* This event will be triggered before date range picker close animation */
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
+      });
 
-    $('#applyLeaveFrom')
-    .dateRangePicker()
-    .bind('datepicker-closed',function()
-{
-	/* This event will be triggered after date range picker close animation */
-	console.log('after close');
-})
+      $("#applyLeave").click(function(e){
+        e.preventDefault();
+        leaveReason = $('#leaveReason').val();
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
+        if(leaveFrom != null && leaveTo != null && leaveReason != ""){
+        var options = {
+          style: 'success',
+          title: 'Leave Applied! ',
+          message: 'Sent for Approval',
+          timeout: 3000,
+          close_button: true
+        };
+        var n = new notify(options);
+        n.show();
+        $('#applyLeaveFrom').val(null);
+        $('#applyLeaveTo').val(null);
+        $('#leaveReason').val(null);
+        leavePending=leavePending-noOfDays;
+        $('#leavePending').html(leavePending);
+        }
+        else{
+          var options = {
+            style: 'error',
+            title: 'Missing info!',
+            message: 'Please fill in the all the fields',
+            timeout: 3000,
+            close_button: true
+          };
+          var n = new notify(options);
+          n.show();
+        }
 
-
+      });
 		</script>
 
   </body>
