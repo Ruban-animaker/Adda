@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../Css/default.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
     <link href="../Css/notify.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/daterangepicker.css">
 
   </head>
   <body>
@@ -66,45 +67,58 @@
           <li class="tabs-title "><a href="Apply_Leave.htm" aria-selected="false" style="color:#594778;font-size:15px">Apply Leave</a></li>
           <li class="tabs-title is-active"><a href="Leave_status.htm" aria-selected="true" style="color:#594778;font-size:15px">Leave Status</a></li>
         </ul>
+        <div class="leaveStatus">
+          <table id="myTable" class="historyReport row-border stripe">
+            <thead>
+              <tr style="font-weight: 300">
+                <th width="100">From Date</th>
+                <th width="100">To Date</th>
+                <th >Work/Responsibilities</th>
+                <th width="50">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6:00</td>
+                <td>15:00</td>
+                <td>1. Handing Customer Queries <br> 2. Wow meeting </td>
+                <td><p><a style="all:unset; color:#594778; cursor: pointer" id="deleteLeave"><i class="fas fa-trash-alt"></i></a></p></td>
+              </tr>
+              <td>14:00</td>
+              <td>23:15</td>
+              <td>1. Handing Customer Queries <br> 2. Wow meeting </td>
+              <td><p><a style="all:unset; color:#594778; cursor: pointer" id="deleteLeave"><i class="fas fa-trash-alt"></i></a></p></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 				<section>
 				</section>
 			</div>
 		</div>
 
     <!-- Modal -->
-    <div class="reveal" id="editHistoryModal" data-reveal data-close-on-click="false" data-animation-in="scale-in-up fast" data-animation-out="scale-out-down fast">
-      <h4>Edit History</h4>
+    <div class="reveal" id="deleteLeaveModal" data-reveal data-close-on-click="false" data-animation-in="scale-in-up fast" data-animation-out="scale-out-down fast">
+      <h4>Edit Leave</h4>
       <hr>
-      <table>
-        <tr>
-          <td>
-      Date:
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      In Time:
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Out Time:
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Work:
-    </td>
-    <td>
-    </td>
-  </tr>
-</table>
+      <div class="grid-x">
+        <div class="cell small-5">
+          <div class="input-group" id="applyLeaveFromDiv" style="width:200px">
+            <input id="applyLeaveFrom" class="input-group-field" type="text" value="" placeholder="From" required>
+            <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+
+            </div>
+
+        </div>
+        <div class="cell small-5">
+          <div class="input-group" id="applyLeaveToDiv" style="width:200px">
+            <input id="applyLeaveTo" class="input-group-field" type="text" value="" placeholder="To" required>
+            <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+
+            </div>
+
+          </div>
+        </div>
 
       <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
@@ -120,29 +134,93 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="../JS/notify.js"></script>
+    <script src="../JS/jquery.daterangepicker.min.js"></script>
 
 		<script>
     $(document).foundation();
-      $(document).ready( function () {
+    $('#applyLeaveFromDiv').dateRangePicker({
+      	getValue: function()
+      	{
+      		if ($('#applyLeaveFrom').val() && $('#applyLeaveTo').val() ){
 
-        $('#myTable').DataTable({
-          "lengthChange": false,
-          "searching": false,
-          "pageLength": 5,
-        });
+      			return $('#applyLeaveFrom').val() + ' to ' + $('#applyLeaveTo').val();}
+      		else
+
+      			return '';
+      	},
+      	setValue: function(s,s1,s2)
+      	{
+          $('#applyLeaveFrom').val(s1);
+          $('#applyLeaveTo').val(s2);
+          leaveFrom = moment(s1, "DD-MM-YYYY");
+          leaveTo = moment(s2, "DD-MM-YYYY");
+          noOfDays = moment.duration(leaveTo.diff(leaveFrom)).asDays() + 1;
+          leaveFrom=s1;
+          leaveTo=s2;
+
+      	},
+        selectForward: true,
+        customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
+        customArrowNextSymbol: '<i class="fa fa-arrow-circle-right"></i>',
+        autoClose: true,
+      	format: 'DD-MM-YYYY',
+      	startOfWeek: 'monday',
+        startDate: moment(new Date()).format("DD-MM-YYYY"),
+        maxDays: 3,
+        showTopbar:false,
+        beforeShowDay: function(t)
+        	{
+        		var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday
+        		var _class = '';
+        		var _tooltip = valid ? '' : 'weekends are disabled';
+        		return [valid,_class,_tooltip];
+        	}
+    })
+    .bind('datepicker-close',function()
+      {
+      	/* This event will be triggered before date range picker close animation */
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
       });
 
-      $("#saveHistory").click(function(){
+      $("#applyLeave").click(function(e){
+        e.preventDefault();
+        leaveReason = $('#leaveReason').val();
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
+        if(leaveFrom != null && leaveTo != null && leaveReason != ""){
         var options = {
           style: 'success',
-          title: 'Success!',
-          message: 'Changes Saved!',
+          title: 'Leave Applied! ',
+          message: 'Sent for Approval',
           timeout: 3000,
           close_button: true
         };
         var n = new notify(options);
         n.show();
-      })
+        $('#applyLeaveFrom').val(null);
+        $('#applyLeaveTo').val(null);
+        $('#leaveReason').val(null);
+        leavePending=leavePending-noOfDays;
+        $('#leavePending').html(leavePending);
+        }
+        else{
+          var options = {
+            style: 'error',
+            title: 'Missing info!',
+            message: 'Please fill in the all the fields',
+            timeout: 3000,
+            close_button: true
+          };
+          var n = new notify(options);
+          n.show();
+        }
+
+      });
 
 		</script>
 

@@ -244,6 +244,11 @@ a:hover {
 	padding-top: 5px;
 }
 
+.leaveStatus{
+	margin-left: 50px;
+	padding-top: 5px;
+}
+
 .historyReport > thead{
 	background-color:#9881bb;
 }
