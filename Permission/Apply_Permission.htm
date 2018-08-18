@@ -26,8 +26,8 @@
 	    <a href="../Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
 			<a href="../Growth report/Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
 			<a href="#" title="Attendance">Attendance <i style="margin-left: 95px" class="far fa-calendar-alt"></i></a>
-			<a href="Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
-			<a href="../Permission/Apply_Permission.htm" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
+			<a href="../Leave Management/Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
+			<a href="Apply_Permission.htm" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
     <div class="row">
@@ -61,46 +61,35 @@
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
         <hr style="margin-left: 50px">
-        <h4 style="margin-left: 50px;"> <i class="far fa-calendar-times"></i> Leave Management</h4>
+        <h4 style="margin-left: 50px;"> <i class="far fa-clock"></i> Permission</h4>
         <ul class="tabs" data-tabs id="example-tabs" style="margin-left: 50px">
-          <li class="tabs-title is-active"><a href="Apply_Leave.htm" aria-selected="true" style="color:#594778;font-size:15px">Apply Leave</a></li>
-          <li class="tabs-title"><a href="Leave_status.htm" aria-selected="false" style="color:#594778;font-size:15px">Leave Status</a></li>
+          <li class="tabs-title is-active"><a href="Apply_Permission.htm" aria-selected="true" style="color:#594778;font-size:15px">Apply Permission</a></li>
+          <li class="tabs-title"><a href="Permission_Status.htm" aria-selected="false" style="color:#594778;font-size:15px">Permission Status</a></li>
         </ul>
 				<div style="padding-top: 10px;margin-left: 50px">
-          <table class="leavePendingTable" style="width:200px ">
+          <table class="leavePendingTable" style="width:300px ">
             <tr>
-              <td>Leave Pending:</td>
-              <td id="leavePending"><td>
+              <td>Permission Pending:</td>
+              <td id="permissionPending"><td>
               </tr>
           </table>
           <!-- Set up your HTML -->
           <form>
-            <div class="grid-x">
-              <div class="cell small-3">
-                <div class="input-group" id="applyLeaveFromDiv" style="width:200px">
-                  <input id="applyLeaveFrom" class="input-group-field" type="text" value="" placeholder="From" required>
-                  <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+            <lable> Choose permission duration: </label>
+              <br>
+              <button type="button" class="button permission30" id="permission30" aria-selected="true">30 minutes</button>
+              <button type="button" class="button permission30" id="permission60" aria-selected="true">60 minutes</button>
+              <button type="button" class="button permission30" id="permission90" aria-selected="true">90 minutes</button>
+              <button type="button" class="button permission30" id="permission120" aria-selected="true">120 minutes</button>
 
-                  </div>
-
-              </div>
-              <div class="cell small-3">
-                <div class="input-group" id="applyLeaveToDiv" style="width:200px">
-                  <input id="applyLeaveTo" class="input-group-field" type="text" value="" placeholder="To" required>
-                  <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
-
-                  </div>
-
-                </div>
-              </div>
 
             </div>
-          <textarea placeholder='Reason/Comments' id="leaveReason" rows="5" style="width:450px;margin-left: 50px" required></textarea>
-          <button class="button applyLeave" id="applyLeave" style="margin-left: 50px" type=submit>Apply</button>
+          <textarea placeholder='Reason/Comments' id="permissionReason" rows="5" style="width:450px;margin-left: 50px" required></textarea>
+          <button class="button applypermission" id="applyPermission" style="margin-left: 50px" type=submit>Apply</button>
           </form>
 
           <span>
-            <p style="margin-left: 50px;font-size: 11px;font-style:italic; "><b>Note:</b> Maximum of only 3 leaves allowed per quarter</p>
+            <p style="margin-left: 50px;font-size: 11px;font-style:italic; "><b>Note:</b> Maximum of only 2 hours of permission allowed per month</p>
           </span>
 
 				</div>
@@ -117,64 +106,14 @@
     <script src="../JS/notify.js"></script>
 
     <script>
-    var leavePending = 12;
-    var leaveFrom=null, leaveTo=null, noOfDays, leaveReason;
-    $('#leavePending').html(leavePending);
-    $('#applyLeaveFromDiv').dateRangePicker({
-      	getValue: function()
-      	{
-      		if ($('#applyLeaveFrom').val() && $('#applyLeaveTo').val() ){
-
-      			return $('#applyLeaveFrom').val() + ' to ' + $('#applyLeaveTo').val();}
-      		else
-
-      			return '';
-      	},
-      	setValue: function(s,s1,s2)
-      	{
-          $('#applyLeaveFrom').val(s1);
-          $('#applyLeaveTo').val(s2);
-          leaveFrom = moment(s1, "DD-MM-YYYY");
-          leaveTo = moment(s2, "DD-MM-YYYY");
-          noOfDays = moment.duration(leaveTo.diff(leaveFrom)).asDays() + 1;
-          leaveFrom=s1;
-          leaveTo=s2;
-
-      	},
-        selectForward: true,
-        customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
-        customArrowNextSymbol: '<i class="fa fa-arrow-circle-right"></i>',
-        autoClose: true,
-      	format: 'DD-MM-YYYY',
-      	startOfWeek: 'monday',
-        startDate: moment(new Date()).format("DD-MM-YYYY"),
-        maxDays: 3,
-        showTopbar:false,
-        beforeShowDay: function(t)
-        	{
-        		var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday
-        		var _class = '';
-        		var _tooltip = valid ? '' : 'weekends are disabled';
-        		return [valid,_class,_tooltip];
-        	}
-    })
-    .bind('datepicker-close',function()
-      {
-      	/* This event will be triggered before date range picker close animation */
-        console.log(leaveFrom);
-        console.log(leaveTo);
-        console.log(noOfDays);
-        console.log(leaveReason);
-      });
-
-      $("#applyLeave").click(function(e){
+    var permissionPending = "02:00";
+    var permissionReason,noOfminutes;
+    $('#permissionPending').html(permissionPending);
+      $("#applyPermission").click(function(e){
         e.preventDefault();
-        leaveReason = $('#leaveReason').val();
-        console.log(leaveFrom);
-        console.log(leaveTo);
-        console.log(noOfDays);
-        console.log(leaveReason);
-        if(leaveFrom != null && leaveTo != null && leaveReason != ""){
+        permissionReason = $('#permissionReason').val();
+        console.log(permissionReason);
+        if(leaveReason != ""){
         var options = {
           style: 'success',
           title: 'Leave Applied! ',
@@ -184,11 +123,9 @@
         };
         var n = new notify(options);
         n.show();
-        $('#applyLeaveFrom').val(null);
-        $('#applyLeaveTo').val(null);
         $('#leaveReason').val(null);
-        leavePending=leavePending-noOfDays;
-        $('#leavePending').html(leavePending);
+        permissionPending=permissionPending-noOfminutes;
+        $('#permissionPending').html(permissionPending);
         }
         else{
           var options = {
@@ -203,7 +140,49 @@
         }
 
       });
-		</script>
+
+
+      $('#permission30').on('click', function(){
+        $('#permission60').removeClass('permissionfocus');
+        $('#permission90').removeClass('permissionfocus');
+        $('#permission120').removeClass('permissionfocus');
+        $('#permission60').addClass('permission30');
+        $('#permission90').addClass('permission30');
+        $('#permission120').addClass('permission30');
+      $(this).addClass('permissionfocus');
+      });
+
+      $('#permission60').on('click', function(){
+        $('#permission30').removeClass('permissionfocus');
+        $('#permission90').removeClass('permissionfocus');
+        $('#permission120').removeClass('permissionfocus');
+        $('#permission30').addClass('permission30');
+        $('#permission90').addClass('permission30');
+        $('#permission120').addClass('permission30');
+      $(this).addClass('permissionfocus');
+      });
+
+      $('#permission90').on('click', function(){
+        $('#permission30').removeClass('permissionfocus');
+        $('#permission60').removeClass('permissionfocus');
+        $('#permission120').removeClass('permissionfocus');
+        $('#permission30').addClass('permission30');
+        $('#permission60').addClass('permission30');
+        $('#permission120').addClass('permission30');
+      $(this).addClass('permissionfocus');
+      });
+
+      $('#permission120').on('click', function(){
+        $('#permission30').removeClass('permissionfocus');
+        $('#permission90').removeClass('permissionfocus');
+        $('#permission60').removeClass('permissionfocus');
+        $('#permission30').addClass('permission30');
+        $('#permission90').addClass('permission30');
+        $('#permission60').addClass('permission30');
+      $(this).addClass('permissionfocus');
+      });
+
+  	</script>
 
   </body>
 </html>

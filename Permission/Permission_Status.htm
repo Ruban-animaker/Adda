@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adda</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/css/foundation.min.css" integrity="sha256-iJQ8dZac/jUYHxiEnZJsyVpKcdq2sQvdA7t02QFmp30= sha384-SplqNBo/0ZlvSdwrP/riIPDozO5ck8+yIm++KVqyMAC53S6m3BaV+2OLpi7ULOOh sha512-ho6hK4sAWdCeqopNZWNy1d9Ok2hzfTLQLcGSr8ZlRzDzh6tNHkVoqSl6wgLsqls3yazwiG9H9dBCtSfPuiLRCQ==" crossorigin="anonymous">
     <!-- Compressed JavaScript -->
@@ -14,8 +15,8 @@
     <link rel="stylesheet" type="text/css" href="../Css/component.css" />
     <link rel="stylesheet" type="text/css" href="../Css/default.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-
     <link href="../Css/notify.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/daterangepicker.css">
 
   </head>
   <body>
@@ -24,10 +25,10 @@
       <a href="#" style="all:unset;cursor:pointer"><p style="margin-top:5px;color:white;"> Edit Profile</p></a>
       </center></div>
 	    <a href="../Adda.htm" title="Home">Home <i style="margin-left: 130px" class="fas fa-home"></i></a>
-			<a href="Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
+			<a href="../Growth report/Growth_Report.htm" title="Growth Report">Growth Report <i style="margin-left: 68px" class="fas fa-chart-line"></i></a>
 			<a href="#" title="Attendance">Attendance <i style="margin-left: 95px" class="far fa-calendar-alt"></i></a>
 			<a href="../Leave Management/Apply_Leave.htm" title="Leave Management">Leave Management <i style="margin-left: 33px" class="far fa-calendar-times"></i></a>
-			<a href="../Permission/Apply_Permission.htm" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
+			<a href="Apply_Permission.htm" title="Permission">Permission <i style="margin-left: 98px" class="far fa-clock"></i></a>
 			<a href="#" title="Forgot ID card">Forgot ID card <i style="margin-left: 72px" class="far fa-id-card"></i></a>
 		</nav>
     <div class="row">
@@ -44,7 +45,7 @@
         <div class="top-bar" style="margin-left:240px;margin-top: -1  px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
-              <li style="all:unset" class="menu-text">ADDA</li>
+              <li style="all:unset" class="menu-text"><img style="width:95px" src="../Public/Logo_C2.png"></li>
 
           </div>
           <div class="top-bar-right">
@@ -61,87 +62,66 @@
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
         <hr style="margin-left: 50px">
-        <h4 style="margin-left: 50px;"> <i class="fas fa-chart-line"></i> Growth Report </i></h4>
+        <h4 style="margin-left: 50px;"> <i class="far fa-clock"></i> Permission </h4>
         <ul class="tabs" data-tabs id="example-tabs" style="margin-left: 50px">
-          <li class="tabs-title "><a href="Growth_Report.htm" aria-selected="false" style="color:#594778;font-size:15px">Today`s report</a></li>
-          <li class="tabs-title is-active"><a href="History.htm" aria-selected="true" style="color:#594778;font-size:15px">History</a></li>
+          <li class="tabs-title "><a href="Apply_Permission.htm" aria-selected="false" style="color:#594778;font-size:15px">Apply Permission</a></li>
+          <li class="tabs-title is-active"><a href="Permission_status.htm" aria-selected="true" style="color:#594778;font-size:15px">Permission Status</a></li>
         </ul>
-        <div class="history">
+        <div class="leaveStatus">
           <table id="myTable" class="historyReport row-border stripe">
             <thead>
               <tr style="font-weight: 300">
-                <th width="80">Date</th>
-                <th width="80">In Time</th>
-                <th width="80">Out Time</th>
-                <th >Work/Responsibilities</th>
-                <th width="200">Comments/Remarks</th>
-                <th width="50">Action</th>
+                <th width="125"> Date</th>
+                <th width="125">Duration</th>
+                <th >Reason</th>
+                <th >Status</th>
+                <th width="50">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>14-08-2018</td>
-                <td>6:00</td>
-                <td>15:00</td>
-                <td>1. Handing Customer Queries <br> 2. Wow meeting </td>
-                <td>Came on time but registered time late by 30 minutes </td>
-                <td><p><a style="all:unset; color:#594778; cursor: pointer" id="editHistory"  data-open="editHistoryModal">Edit</a></p></td>
+                <td>11-08-2018</td>
+                <td>30 minutes</td>
+                <td>Going on Vacation</td>
+                <td>Pending</td>
+                <td><p><a style="all:unset; color:#594778; cursor: pointer" id="deleteLeave"><i class="fas fa-trash-alt"></i></a></p></td>
               </tr>
-              <td>15-08-2018</td>
-              <td>14:00</td>
-              <td>23:15</td>
-              <td>1. Handing Customer Queries <br> 2. Wow meeting </td>
-              <td>In time registered late by 10 minutes </td>
-              <td><p><a style="all:unset; color:#594778; cursor: pointer" id="editHistory" data-open="editHistoryModal">Edit</a></p></td>
+              <td>14-09-2018</td>
+              <td>120 minutes</td>
+              <td>Personal Emergency</td>
+              <td>Approved</td>
+              <td><p><a style="all:unset; color:#594778; cursor: pointer" id="deleteLeave"><i class="fas fa-trash-alt"></i></a></p></td>
             </tr>
             </tbody>
           </table>
         </div>
-
 				<section>
 				</section>
 			</div>
 		</div>
 
     <!-- Modal -->
-    <div class="reveal" id="editHistoryModal" data-reveal data-close-on-click="false" data-animation-in="scale-in-up fast" data-animation-out="scale-out-down fast">
-      <h4>Edit History</h4>
+    <div class="reveal" id="deleteLeaveModal" data-reveal data-close-on-click="false" data-animation-in="scale-in-up fast" data-animation-out="scale-out-down fast">
+      <h4>Edit Leave</h4>
       <hr>
-      <table>
-        <tr>
-          <td>
-      Date: 15-08-2018
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      In Time: 14:00
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Out Time: 23:15
-    </td>
-    <td>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Work/Responsibilities:
-        <textarea rows="3">1. Handing Customer Queries | 2. Wow meeting </textarea>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Comments/Remarks:
-        <textarea rows="3">Came on time but registered time late by 30 minutes </textarea>
-    </td>
-  </tr>
-</table>
+      <div class="grid-x">
+        <div class="cell small-5">
+          <div class="input-group" id="applyLeaveFromDiv" style="width:200px">
+            <input id="applyLeaveFrom" class="input-group-field" type="text" value="" placeholder="From" required>
+            <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+
+            </div>
+
+        </div>
+        <div class="cell small-5">
+          <div class="input-group" id="applyLeaveToDiv" style="width:200px">
+            <input id="applyLeaveTo" class="input-group-field" type="text" value="" placeholder="To" required>
+            <span class="input-group-label" style="background-color: #f0eaf9"><i class="fas fa-calendar-alt"></i></span>
+
+            </div>
+
+          </div>
+        </div>
 
       <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
@@ -153,35 +133,97 @@
     </div>
 
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/js/foundation.min.js" integrity="sha256-G6jsRyH1fxbsvFIXSCuwYmI1aIDYBa28xscrvmYjJy0= sha384-vtoG68NvPc9azmFJr447vvY8qgdyA4FdaJ5/bqvzIM4eAdZfO0iyRRF8l2AAscYI sha512-43seCcNrHA0BQgrtyajB9sp8yOdv5c8QdYvgjP7zJ7v+dmzAcxYDQ2gupb9aztsNWBq1COIp/3NHYkQs4l/dkg==" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="../JS/notify.js"></script>
+    <script src="../JS/jquery.daterangepicker.min.js"></script>
 
-    <script>
+		<script>
     $(document).foundation();
-      $(document).ready( function () {
+    $('#applyLeaveFromDiv').dateRangePicker({
+      	getValue: function()
+      	{
+      		if ($('#applyLeaveFrom').val() && $('#applyLeaveTo').val() ){
 
-        $('#myTable').DataTable({
-          "lengthChange": false,
-          "searching": false,
-          "pageLength": 5,
-        });
+      			return $('#applyLeaveFrom').val() + ' to ' + $('#applyLeaveTo').val();}
+      		else
+
+      			return '';
+      	},
+      	setValue: function(s,s1,s2)
+      	{
+          $('#applyLeaveFrom').val(s1);
+          $('#applyLeaveTo').val(s2);
+          leaveFrom = moment(s1, "DD-MM-YYYY");
+          leaveTo = moment(s2, "DD-MM-YYYY");
+          noOfDays = moment.duration(leaveTo.diff(leaveFrom)).asDays() + 1;
+          leaveFrom=s1;
+          leaveTo=s2;
+
+      	},
+        selectForward: true,
+        customArrowPrevSymbol: '<i class="fa fa-arrow-circle-left"></i>',
+        customArrowNextSymbol: '<i class="fa fa-arrow-circle-right"></i>',
+        autoClose: true,
+      	format: 'DD-MM-YYYY',
+      	startOfWeek: 'monday',
+        startDate: moment(new Date()).format("DD-MM-YYYY"),
+        maxDays: 3,
+        showTopbar:false,
+        beforeShowDay: function(t)
+        	{
+        		var valid = !(t.getDay() == 0 || t.getDay() == 6);  //disable saturday and sunday
+        		var _class = '';
+        		var _tooltip = valid ? '' : 'weekends are disabled';
+        		return [valid,_class,_tooltip];
+        	}
+    })
+    .bind('datepicker-close',function()
+      {
+      	/* This event will be triggered before date range picker close animation */
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
       });
 
-      $("#saveHistory").click(function(){
+      $("#applyLeave").click(function(e){
+        e.preventDefault();
+        leaveReason = $('#leaveReason').val();
+        console.log(leaveFrom);
+        console.log(leaveTo);
+        console.log(noOfDays);
+        console.log(leaveReason);
+        if(leaveFrom != null && leaveTo != null && leaveReason != ""){
         var options = {
           style: 'success',
-          title: 'Success!',
-          message: 'Changes Saved!',
+          title: 'Leave Applied! ',
+          message: 'Sent for Approval',
           timeout: 3000,
           close_button: true
         };
         var n = new notify(options);
         n.show();
-        $('#editHistoryModal').foundation('close');
-      })
+        $('#applyLeaveFrom').val(null);
+        $('#applyLeaveTo').val(null);
+        $('#leaveReason').val(null);
+        leavePending=leavePending-noOfDays;
+        $('#leavePending').html(leavePending);
+        }
+        else{
+          var options = {
+            style: 'error',
+            title: 'Missing info!',
+            message: 'Please fill in the all the fields',
+            timeout: 3000,
+            close_button: true
+          };
+          var n = new notify(options);
+          n.show();
+        }
+
+      });
 
 		</script>
 

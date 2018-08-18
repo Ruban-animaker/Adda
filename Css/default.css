@@ -327,3 +327,62 @@ a:hover {
 	background-color:#594778;
 	outline:none
 }
+
+.permission30{
+	background-color: #594778
+}
+
+.permission30:hover{
+	background-color: #9881bb;
+ 	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+
+.permissionfocus{
+	outline:0;
+	background-color: #fff;
+	color:black;
+	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+
+.permissionfocus:focus{
+	outline:0;
+	background-color: #fff;
+	color:black;
+	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+.permissionfocus:hover{
+	background-color: #9881bb;
+ 	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+
+.permissionfocus:active{
+	background-color: #9881bb;
+ 	border-width:1px;
+	border-style: solid;
+	border-color: #594778;
+}
+
+.applypermission{
+	background-color: #594778
+}
+
+.applypermission:hover{
+	background-color: #9881bb
+}
+
+.applypermission:active{
+	background-color: #594778
+}
+
+.applypermission:focus{
+	background-color: #594778;
+	outline:none
+}
