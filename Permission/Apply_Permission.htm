@@ -44,7 +44,7 @@
         <div class="top-bar" style="margin-left:240px;margin-top: -24px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
-              <li style="all:unset" class="menu-text"><img style="width:95px" src="../Public/Logo_C2.png"></li>
+              <li style="all:unset" class="menu-text"><a href="../adda.htm"><img  src="../Public/Logo_C9.png"></a></li>
 
           </div>
           <div class="top-bar-right">
@@ -67,7 +67,7 @@
           <li class="tabs-title"><a href="Permission_Status.htm" aria-selected="false" style="color:#594778;font-size:15px">Permission Status</a></li>
         </ul>
 				<div style="padding-top: 10px;margin-left: 50px">
-          <table class="leavePendingTable" style="width:300px ">
+          <table class="permissionPendingTable" style="width:320px ">
             <tr>
               <td>Permission Pending:</td>
               <td id="permissionPending"><td>
@@ -106,9 +106,9 @@
     <script src="../JS/notify.js"></script>
 
     <script>
-    var permissionPending = "02:00";
+    var permissionPending = "120";
     var permissionReason,noOfminutes;
-    $('#permissionPending').html(permissionPending);
+    $('#permissionPending').html(permissionPending + ' ' + 'minutes');
       $("#applyPermission").click(function(e){
         e.preventDefault();
         permissionReason = $('#permissionReason').val();
@@ -125,7 +125,7 @@
         n.show();
         $('#leaveReason').val(null);
         permissionPending=permissionPending-noOfminutes;
-        $('#permissionPending').html(permissionPending);
+        $('#permissionPending').html(permissionPending + ' ' + 'minutes');
         }
         else{
           var options = {

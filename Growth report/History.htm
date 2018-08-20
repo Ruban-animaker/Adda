@@ -44,7 +44,7 @@
         <div class="top-bar" style="margin-left:240px;margin-top: -1  px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
-              <li style="all:unset" class="menu-text">ADDA</li>
+              <li style="all:unset" class="menu-text"><a href="../adda.htm"><img  src="../Public/Logo_C9.png"></a></li>
 
           </div>
           <div class="top-bar-right">
@@ -67,7 +67,7 @@
           <li class="tabs-title is-active"><a href="History.htm" aria-selected="true" style="color:#594778;font-size:15px">History</a></li>
         </ul>
         <div class="history">
-          <table id="myTable" class="historyReport row-border stripe">
+          <table id="historyReport" class="historyReport row-border stripe">
             <thead>
               <tr style="font-weight: 300">
                 <th width="80">Date</th>
@@ -163,7 +163,7 @@
     $(document).foundation();
       $(document).ready( function () {
 
-        $('#myTable').DataTable({
+        $('#historyReport').DataTable({
           "lengthChange": false,
           "searching": false,
           "pageLength": 5,

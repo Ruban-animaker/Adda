@@ -6,6 +6,20 @@
 	<!-- Meta tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  // TODO: Replace with your project's customized code snippet
+	  var config = {
+	    apiKey: "AIzaSyD3ucfrdZAXNrMEF-sHRO0WX7JhqRivCZY",
+	    authDomain: "animaker-e60e2.firebaseapp.com",
+	    databaseURL: "https://animaker-e60e2.firebaseio.com",
+	    projectId: "animaker-e60e2",
+	  };
+	  firebase.initializeApp(config);
+	</script>
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -32,7 +46,7 @@
 	<div class="appointment-w3">
 
 		<form action="#" method="post">
-			<h2 class="sub-heading-wthree"> Login Here</h2>
+			<h2 class="sub-heading-wthree"> Login/Sign up</h2>
 			<div class="main">
 				<div class="form-left-w3l">
 					<input type="email" name="email" placeholder="Email" required="">
@@ -46,7 +60,8 @@
 
 			</div>
 			<div class="btnn">
-				<button type="submit">Login</button><br>
+				<button type="submit" id="login" style="border-style: solid; border-width: 1px; border-color:black">Login</button>
+				<button type="submit" id="signUp" style="border-style: solid; border-width: 1px; border-color:black">Sign Up</button><br>
 				<div class="left-side w3l">
 					<input type="checkbox" class="checked">
 					<span class="span">Remember me </span>
@@ -62,13 +77,33 @@
 					<h4>or</h4>
 				</div>
 				<ul>
-					<li><a href="#" class="g"><span class="fa fa-google-plus" aria-hidden="true"></span>Login with Google+</a></li>
+					<li><a href="#"><img class="googleSignIn" src="Public/Google_Signin.png"></a></li>
 				</ul>
 			</div>
 
 
 		</form>
 	</div>
+	<script>
+		var provider = new firebase.auth.GoogleAuthProvider();
+
+		firebase.auth().signInWithPopup(provider).then(function(result) {
+		  // This gives you a Google Access Token. You can use it to access the Google API.
+		  var token = result.credential.accessToken;
+		  // The signed-in user info.
+		  var user = result.user;
+		  // ...
+		}).catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  // The email of the user's account used.
+		  var email = error.email;
+		  // The firebase.auth.AuthCredential type that was used.
+		  var credential = error.credential;
+		  // ...
+		});
+	</script>
 </body>
 
 </html>

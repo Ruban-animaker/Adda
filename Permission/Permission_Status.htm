@@ -45,7 +45,7 @@
         <div class="top-bar" style="margin-left:240px;margin-top: -1  px;background-color: #9881bb">
           <div class="top-bar-left" style="font-size: 20px;font-weight: 300;letter-spacing: 3px">
 
-              <li style="all:unset" class="menu-text"><img style="width:95px" src="../Public/Logo_C2.png"></li>
+              <li style="all:unset" class="menu-text"><a href="../adda.htm"><img  src="../Public/Logo_C9.png"></a></li>
 
           </div>
           <div class="top-bar-right">
@@ -68,7 +68,7 @@
           <li class="tabs-title is-active"><a href="Permission_status.htm" aria-selected="true" style="color:#594778;font-size:15px">Permission Status</a></li>
         </ul>
         <div class="leaveStatus">
-          <table id="myTable" class="historyReport row-border stripe">
+          <table id="permissionStatus" class="permissionReport row-border stripe">
             <thead>
               <tr style="font-weight: 300">
                 <th width="125"> Date</th>
@@ -141,6 +141,14 @@
 
 		<script>
     $(document).foundation();
+    $(document).ready( function () {
+
+      $('#permissionStatus').DataTable({
+        "lengthChange": false,
+        "searching": false,
+        "pageLength": 5,
+      });
+    });
     $('#applyLeaveFromDiv').dateRangePicker({
       	getValue: function()
       	{

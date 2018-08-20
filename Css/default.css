@@ -253,6 +253,14 @@ a:hover {
 	background-color:#9881bb;
 }
 
+ .permissionReport > thead{
+	background-color:#9881bb;
+}
+
+ .leaveReport > thead{
+	background-color:#9881bb;
+}
+
 .reveal:focus{
 	outline:0;
 }
@@ -297,7 +305,7 @@ a:hover {
  border-bottom-style: solid;
 }
 
-.leavePendingTable{
+.leavePendingTable, .permissionPendingTable{
  border-left-width: 5px;
  border-left-color: #594778;
  border-left-style: solid;
