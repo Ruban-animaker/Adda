@@ -9,23 +9,10 @@
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
-	<script>
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyD3ucfrdZAXNrMEF-sHRO0WX7JhqRivCZY",
-		authDomain: "animaker-e60e2.firebaseapp.com",
-		databaseURL: "https://animaker-e60e2.firebaseio.com",
-		projectId: "animaker-e60e2",
-		storageBucket: "animaker-e60e2.appspot.com",
-		messagingSenderId: "951293181827"
-	};
-	firebase.initializeApp(config);
-	</script>
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
-
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
@@ -62,11 +49,6 @@
 			<div class="btnn">
 				<button type="submit" id="login"  style="border-style: solid; border-width: 1px; border-color:black">Login</button>
 				<button type="submit" id="signUp" style="border-style: solid; border-width: 1px; border-color:black">Sign Up</button><br>
-				<div class="left-side w3l">
-					<input type="checkbox" class="checked">
-					<span class="span">Remember me </span>
-
-				</div>
 				<a href="#" class="for">Forgot password...?</a>
 				<div class="clear"></div>
 			</div>
@@ -77,54 +59,15 @@
 					<h4>or</h4>
 				</div>
 				<ul>
-					<li><a href="#"><img class="googleSignIn" src="Public/Google_Signin.png"></a></li>
+					<li><a href="#"><img class="googleSignIn" id="googleSignIn" src="Public/Google_Signin.png"></a></li>
 				</ul>
 			</div>
 
 
 		</div>
 	</div>
+	<script src="JS/Firebase/Login_Signup.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script>
-
-
-	$('#signUp').click(function(e){
-		e.preventDefault()
-		var email =  $('#user_email').val();
-		var password = $('#user_password').val();
-
-		alert(email);
-
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-		// Handle Errors here.
-		var errorCode = error.code;
-		var errorMessage = error.message;
-
-		alert("Error!" + errorMessage);
-		// ...
-		});
-	})
-
-	$('#login').click(function(e){
-
-		var email =  $('#user_email').val();
-		var password = $('#user_password').val();
-
-		alert(email);
-		alert(password);
-
-		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-	  // Handle Errors here.
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
-
-		alert("Error!" + errorMessage);
-	  // ...
-	});
-
-	})
-
-	</script>
 </body>
 
 </html>

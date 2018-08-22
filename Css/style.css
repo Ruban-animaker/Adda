@@ -443,7 +443,7 @@ input.checked {
     letter-spacing: 1px;
     display: block;
     text-transform: uppercase;
-    float: right;
+    float: center;
 }
 
 .btnn .for:hover {
