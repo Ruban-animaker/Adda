@@ -41,16 +41,75 @@ login.addEventListener('click', e => {
   const email = user_email.value;
   const password = user_password.value;
 
+  if(email == "" && password == "")
+  {
+  var options = {
+    style: 'error',
+    title: 'Missing info!',
+    message: 'Please fill in the e-mail and password',
+    timeout: 3000,
+    close_button: true
+  };
+  var n = new notify(options);
+  n.show();
+  }
+  else if(email == "" && password != ""){
+    var options = {
+      style: 'error',
+      title: 'Missing info!',
+      message: 'Please fill in the e-mail address',
+      timeout: 3000,
+      close_button: true
+    };
+    var n = new notify(options);
+    n.show();
+  }
+  else if(email != "" && password == ""){
+    var options = {
+      style: 'error',
+      title: 'Missing info!',
+      message: 'Please fill in the password',
+      timeout: 3000,
+      close_button: true
+    };
+    var n = new notify(options);
+    n.show();
+  }
+  else{
+
 		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
 	  // Handle Errors here.
 	  var errorCode = error.code;
 	  var errorMessage = error.message;
 
-		console.log(errorMessage);
+    console.log(errorMessage)
+
+		if(errorMessage=="There is no user record corresponding to this identifier. The user may have been deleted."){
+      var options = {
+        style: 'error',
+        title: 'Unable to locate user!',
+        message: 'Please sign up if you are a new user',
+        timeout: 3000,
+        close_button: true
+      };
+      var n = new notify(options);
+      n.show();
+    }
+    else if(errorMessage=="The password is invalid or the user does not have a password."){
+      var options = {
+        style: 'error',
+        title: 'Password Incorrect!',
+        message: 'Please type in the correct password or use forgot password option',
+        timeout: 5000,
+        close_button: true
+      };
+      var n = new notify(options);
+      n.show();
+    }
 	  // ...
 	});
-
-	})
+}
+});
 
 //Auth State Change Listener
 
@@ -89,5 +148,6 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   console.log(errorMessage);
 });
 });
+
 
 }());
