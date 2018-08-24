@@ -106,6 +106,17 @@ login.addEventListener('click', e => {
       var n = new notify(options);
       n.show();
     }
+    else if(errorMessage=="The email address is badly formatted."){
+      var options = {
+        style: 'error',
+        title: 'Incorrect email!',
+        message: 'Please enter a valid e-mail address',
+        timeout: 5000,
+        close_button: true
+      };
+      var n = new notify(options);
+      n.show();
+    }
 	  // ...
 	});
 }

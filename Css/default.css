@@ -394,3 +394,13 @@ a:hover {
 	background-color: #594778;
 	outline:none
 }
+
+.profilePasswordReset{
+	color:#f39323;
+}
+
+.profilePasswordReset:hover{
+	color:#594778;
+	text-decoration: underline;
+
+}
