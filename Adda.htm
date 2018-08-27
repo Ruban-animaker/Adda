@@ -164,7 +164,7 @@
 				body = document.body;
 
 
-      var io=1,inTime,outTime,workTime;
+      var io=1;
 
 
 		/*	showLeft.onclick = function() {
@@ -184,12 +184,12 @@
 
       $("#in-out").click(function(){
         if(io==1){
-          inTime = moment(new Date()).format("HH:mm");
-          $("#inTime").html(inTime);
+          inTime_n = moment(new Date()).format("HH:mm");
+
         var options = {
           style: 'success',
           title: 'Success!',
-          message: 'In time registered -' + ' ' + inTime,
+          message: 'In time registered -' + ' ' + inTime_n,
           timeout: 3000,
           close_button: true
         };
@@ -199,16 +199,16 @@
 
       }
       else {
-        outTime=moment(new Date()).format("HH:mm");
-        $("#outTime").html(outTime);
+        outTime_n=moment(new Date()).format("HH:mm");
+
         var options = {
           style: 'success',
           title: 'Success!',
-          message: 'Out time registered -' + ' ' + outTime,
+          message: 'Out time registered -' + ' ' + outTime_n,
           timeout: 3000,
           close_button: true
         };
-        workTime=moment.utc(moment(outTime,"HH:mm").diff(moment(inTime,"HH:mm"))).format("HH:mm")
+        workTime=moment.utc(moment(outTime_n,"HH:mm").diff(moment(inTime_n,"HH:mm"))).format("HH:mm")
         var options_work = {
           style: 'info',
           title: 'Done for the day!',

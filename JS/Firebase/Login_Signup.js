@@ -11,6 +11,8 @@
   };
   firebase.initializeApp(config);
 
+  var database = firebase.database();
+
 //Create user
 
 const signUp = document.getElementById('signUp');
@@ -37,6 +39,7 @@ const googleSignIn = document.getElementById('googleSignIn');
 //Login User
 
 login.addEventListener('click', e => {
+
 
   const email = user_email.value;
   const password = user_password.value;
@@ -117,8 +120,8 @@ login.addEventListener('click', e => {
       var n = new notify(options);
       n.show();
     }
-	  // ...
-	});
+
+ });
 }
 });
 
