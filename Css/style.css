@@ -323,7 +323,7 @@ h1.header-w3ls {
     border-left-color: #c2751c;
     border-top-color: #c2751c;
     border-style: solid;
-    height: 450px;
+    height: 500px;
 
 
 }
@@ -444,6 +444,7 @@ input.checked {
     display: block;
     text-transform: uppercase;
     float: center;
+    outline:none  
 }
 
 .btnn .for:hover {
@@ -530,6 +531,13 @@ span.fa {
     color: #fff;
 }
 
+.reveal:focus{
+  outline:none;
+}
+
+.forgotPasswordBtn:focus{
+  outline:none;
+}
 
 /*--responsive--*/
 
@@ -538,7 +546,7 @@ span.fa {
         font-size: 56px;
     }
     .appointment-w3 {
-        width: 30%;
+        width: 50%;
         margin: 100px 450px 53px;
     }
     .form-left-w3l input[type="email"] {
@@ -573,7 +581,7 @@ span.fa {
 
 @media(max-width:1440px) {
     .appointment-w3 {
-        width: 28%;
+        width: 35%;
     }
 }
 

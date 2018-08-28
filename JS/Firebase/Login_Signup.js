@@ -20,6 +20,8 @@ const login = document.getElementById('login');
 const user_email = document.getElementById('user_email');
 const user_password = document.getElementById('user_password');
 const googleSignIn = document.getElementById('googleSignIn');
+const forgotPassword = document.getElementById('forgotPasswordBtn');
+const forgotPasswordEmail = document.getElementById('forgotPasswordEmail')
 
   signUp.addEventListener('click', e => {
 
@@ -161,6 +163,38 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
   // ...
   console.log(errorMessage);
 });
+});
+
+forgotPasswordBtn.addEventListener('click', e => {
+  const email = forgotPasswordEmail.value;
+  firebase.auth().sendPasswordResetEmail(email).then(function(){
+    alert("Link sent!")
+  }).catch(function(error){
+    var errorMessage = error.message;
+    console.log(errorMessage);
+    if(errorMessage=="The email address is badly formatted."){
+      var options = {
+        style: 'error',
+        title: 'Incorrect email!',
+        message: 'Please enter a valid e-mail address',
+        timeout: 5000,
+        close_button: true
+      };
+      var n = new notify(options);
+      n.show();
+    }
+    else if(errorMessage=="There is no user record corresponding to this identifier. The user may have been deleted."){
+      var options = {
+        style: 'error',
+        title: 'Unable to locate user!',
+        message: 'Please sign up if you are a new user',
+        timeout: 3000,
+        close_button: true
+      };
+      var n = new notify(options);
+      n.show();
+    }
+  })
 });
 
 

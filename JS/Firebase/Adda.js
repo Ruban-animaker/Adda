@@ -104,9 +104,26 @@ user.updateProfile({
     dateOfBirth: profileDOB_f
   },function(error) {
   if (error) {
-    alert("NOt Saved")
+    var options = {
+      style: 'error',
+      title: 'Error!',
+      message: 'There was an error. Please try again',
+      timeout: 3000,
+      close_button: true
+    };
+    var n = new notify(options);
+    n.show();
+
   } else {
-    alert("Saved")
+    var options = {
+      style: 'success',
+      title: 'Success!',
+      message: 'Details Saved!',
+      timeout: 3000,
+      close_button: true
+    };
+    var n = new notify(options);
+    n.show();
   }
 
 })
@@ -119,7 +136,7 @@ inOut.addEventListener('change', e => {
   var todayDate = moment(new Date()).format("DD-MM-YYYY");
 if(inTime_f==null){
   inTime_f=moment(new Date()).format("HH:mm")
-  database.ref('users/'+uid+'/attendance/'+todayDate).set({
+  database.ref('users/'+uid+'/attendance/').child(todayDate).set({
     inTime: inTime_f,
     outTime: " "
   },function(error){
@@ -132,7 +149,7 @@ if(inTime_f==null){
 }
 else{
   outTime_f=moment(new Date()).format("HH:mm")
-  database.ref('users/'+uid+'/attendance/'+todayDate).set({
+  database.ref('users/'+uid+'/attendance/').child(todayDate).set({
     inTime: inTime_f,
     outTime: outTime_f
   },function(error){

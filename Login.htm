@@ -9,6 +9,9 @@
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/css/foundation.min.css" integrity="sha256-iJQ8dZac/jUYHxiEnZJsyVpKcdq2sQvdA7t02QFmp30= sha384-SplqNBo/0ZlvSdwrP/riIPDozO5ck8+yIm++KVqyMAC53S6m3BaV+2OLpi7ULOOh sha512-ho6hK4sAWdCeqopNZWNy1d9Ok2hzfTLQLcGSr8ZlRzDzh6tNHkVoqSl6wgLsqls3yazwiG9H9dBCtSfPuiLRCQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css">
+
 	<link href="Css/notify.css" rel="stylesheet">
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
@@ -21,9 +24,11 @@
 	<!-- Meta tags -->
 	<!-- font-awesome icons -->
 	<link rel="stylesheet" href="Css/font-awesome.min.css" />
+
 	<!-- //font-awesome icons -->
 	<!--stylesheets-->
 	<link href="Css/style.css" rel='stylesheet' type='text/css' media="all">
+
 	<!--//style sheet end here-->
 </head>
 
@@ -50,7 +55,7 @@
 			<div class="btnn">
 				<button type="submit" id="login"  style="border-style: solid; border-width: 1px; border-color:black">Login</button>
 				<button type="submit" id="signUp" style="border-style: solid; border-width: 1px; border-color:black">Sign Up</button><br>
-				<a href="#" class="for">Forgot password...?</a>
+				<a class="for" data-open="forgotPasswordModal">Forgot password...?</a>
 				<div class="clear"></div>
 			</div>
 
@@ -67,11 +72,33 @@
 
 		</div>
 	</div>
+
+	<div class="reveal" class="forgotPasswordModal" id="forgotPasswordModal" data-reveal data-close-on-click="false" data-animation-in="scale-in-up fast" data-animation-out="scale-out-down fast">
+		<h4>Forgot Password</h4>
+		<hr>
+		<table>
+			<tr>
+				<td>
+		E-mail
+	</td>
+	<td style="padding-top: 25px">
+		<input type="text" id="forgotPasswordEmail" >
+	</td>
+</tr>
+</table>
+		<button class="close-button" data-close aria-label="Close reveal" type="button">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<hr>
+		<button class="forgotPasswordBtn warning button" id="forgotPasswordBtn">Send Link</button>
+	</div>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.2/dist/js/foundation.min.js" integrity="sha256-G6jsRyH1fxbsvFIXSCuwYmI1aIDYBa28xscrvmYjJy0= sha384-vtoG68NvPc9azmFJr447vvY8qgdyA4FdaJ5/bqvzIM4eAdZfO0iyRRF8l2AAscYI sha512-43seCcNrHA0BQgrtyajB9sp8yOdv5c8QdYvgjP7zJ7v+dmzAcxYDQ2gupb9aztsNWBq1COIp/3NHYkQs4l/dkg==" crossorigin="anonymous"></script>
 	<script src="JS/notify.js"></script>
   <script src="JS/Firebase/Login_Signup.js"></script>
 	<script>
-
+	  $(document).foundation();
 	</script>
 </body>
 
